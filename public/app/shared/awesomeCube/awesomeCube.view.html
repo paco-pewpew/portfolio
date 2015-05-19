@@ -1,0 +1,22 @@
+<div class="aws-cube">
+	<div class="aws-cube-shape">
+		<div class="front">
+			<span ng-click="vm.enterFunction()">{{vm.content.title}}</span>
+		</div>
+		<div class="right">
+			<span ng-click="vm.showFront=false">{{vm.content.description}}</span>
+		</div>
+		<div class="top">
+			<img ng-if="vm.content.shots[0]" ng-src="{{'assets/images/experimentsRenders/' + vm.content.shots[0] +'_dark.png'}}">
+		</div>
+		<div class="left">
+			<img ng-if="vm.content.shots[1]" ng-src="{{'assets/images/experimentsRenders/' + vm.content.shots[1] +'_dark.png'}}">
+		</div>
+		<div class="bottom">
+			<img ng-if="vm.content.shots[2]" ng-src="{{'assets/images/experimentsRenders/' + vm.content.shots[2] +'_dark.png'}}">
+		</div>
+		<div class="back">
+			<span ng-click="vm.exitFunction()">&#10006;</span>
+		</div>
+	</div>
+</div>

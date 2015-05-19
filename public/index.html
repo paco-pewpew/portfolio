@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html ng-app="portfolio">
+  <head>
+    <title>My portfolio</title>
+    <meta charset="UTF-8">
+    <base href="/"></base>
+    <link rel="stylesheet" href="assets/css/portfolioStyle.concat.min.css">
+  </head>
+  <body aws-paralax-bg>
+    <nav id="nav-bar">
+      <a ui-sref-active="active" ui-sref="main">
+        Hello
+      </a>
+      <a ui-sref-active="active" ui-sref="experiments">Expriments</a>
+      <a ui-sref-active="active" ui-sref="connect">Connect</a>
+      <div class="separator"></div>
+    </nav>
+
+    <div ui-view></div>
+
+    <footer id="footer">
+      <p class="about">
+        Plamen Kovachev
+        <aws-preloader></aws-preloader>
+      </p>
+    </footer>
+
+    <!-- SPELLS  -->
+    <!-- <script src="//localhost:35729/livereload.js"></script> -->
+    <script src="assets/libs/angular/angular.js"></script>
+    <script src="assets/libs/angular-animate/angular-animate.js"></script>
+    <script src="assets/libs/angular-ui-router/release/angular-ui-router.min.js"></script>
+
+     <!-- Angular custom -->
+    <script src="assets/js/portfolioBuilt.concat.min.js"></script>
+
+  </body>
+</html>

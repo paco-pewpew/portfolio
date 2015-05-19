@@ -1,0 +1,14 @@
+<div class="aws-nodes">
+	<ul class="content-hub">
+		<span class="circle"></span>
+		<span class="pointy"></span>
+		<span class="line"></span>
+		<span class="line"></span>
+		<span class="line"></span>
+		<li ng-repeat="node in ::vm.content track by $index" class="node">
+			<a ng-href="{{node.link}}">
+				{{node.caption}}
+			</a>
+		</li>
+	</ul>
+</div>

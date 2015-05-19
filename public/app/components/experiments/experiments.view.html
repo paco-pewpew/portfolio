@@ -1,0 +1,30 @@
+<section id="experiments-container">
+
+	<div id="cubes-row-container">
+		<div ng-repeat="cubeData in ::vm.gitExperiments" class="aws-cube-container">
+			<aws-cube 
+				content="cubeData"
+				enter-function="vm.activateCube($index)"
+				exit-function="vm.deactivateCube($index)">
+			</aws-cube>
+		</div>
+	</div>
+
+
+	<div id="activated-contents" ng-if="vm.activatedCube!==-1">
+		<div id="images-row-container">
+			<aws-image-fx ng-repeat="shot in vm.gitExperiments[vm.activatedCube].shots" shot="shot">
+			</aws-image-fx>
+			
+			<div id="experiment-description">
+				<h2>{{vm.gitExperiments[vm.activatedCube].title}}</h2>
+				<p>{{vm.gitExperiments[vm.activatedCube].description}}</p>
+				<ul>
+					<li ng-repeat="keypoint in vm.gitExperiments[vm.activatedCube].keypoints">{{keypoint}}</li>
+				</ul>
+			</div>
+		</div>
+
+	</div>
+
+</section>

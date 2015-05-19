@@ -1,0 +1,50 @@
+div.aws-image {
+	display: inline-block;
+	position: relative;
+	height: 300px;
+	width: 300px;
+	transform-style: preserve-3d;
+	transform: rotateY(-20deg) translate3d(0, 0, 50px);
+	//transition:transform linear 0.5s;
+	&:first-of-type {
+		margin-left: 400px;
+	}
+	&:not(:first-of-type) {
+		margin-left: -100px;
+	}
+	&:hover {
+		/*transform: rotateY(-10deg) translate3d(-100px, 0px, 300px);*/
+		/*transform: rotateY(-30deg) translate3d(0, 0, 100px);*/
+		z-index: 1337;
+	}
+	img {
+		display: block;
+		position: relative;
+		height: 100%;
+		width: 100%;
+		&:nth-of-type(2) {
+			transform: translateY(-100%);
+			filter: saturate(30%) blur(0.5px) opacity(0%);
+			transition:filter cubic-bezier(0.250, 0.460, 0.450, 0.940) 1s;
+			&:hover {
+				filter: saturate(100%) blur(0px) opacity(100%);
+			}				
+		}
+	}
+}
+
+/*
+ANIMATION
+*/
+
+.aws-image.ng-leave {
+	display: none;
+}
+
+.aws-image.ng-enter {
+	transition: opacity 0.5s ease;
+	opacity: 0;
+}
+.aws-image.ng-enter.ng-enter-active {
+	opacity: 1;
+}
