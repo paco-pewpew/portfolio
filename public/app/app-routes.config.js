@@ -9,9 +9,9 @@
   function config($stateProvider, $urlRouterProvider) {
   	
   	$stateProvider
-  		.state('main', {
-  			url: '/main',
-  			templateUrl: 'app/components/main/main.view.html',
+  		.state('hello', {
+  			url: '/hello',
+  			templateUrl: 'app/components/hello/hello.view.html',
   			controller: 'MainCtrl',
   			controllerAs: 'vm'
   		})
@@ -28,6 +28,6 @@
         controllerAs: 'vm'
       });
 
-		$urlRouterProvider.otherwise('/main');
+		$urlRouterProvider.otherwise('/hello');
   }
 })();

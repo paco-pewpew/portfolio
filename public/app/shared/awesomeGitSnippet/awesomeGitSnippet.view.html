@@ -1,0 +1,23 @@
+<div class="aws-git-snippet">
+	<div class="git-user-info">
+		<img ng-src="{{vm.userData.avatar_url}}" ng-hide="vm.errors.user" class="git-avatar">
+		<a ng-href="{{vm.userData.html_url}}" ng-hide="vm.errors.user" class="git-name">git: {{vm.userData.login}}</a>
+		<span ng-show="vm.errors.user">Error fetching user info for: {{vm.user}}</span>
+	</div>
+
+	<div class="git-repos">
+		<ul>
+			<strong>recent public repos: </strong>
+			<li ng-repeat="repo in vm.repos | orderBy: '-created'" ng-show="vm.repos.length>0">
+				<div class="git-repo-info">
+					<a ng-href="{{repo.link}}">{{repo.name}}</a>
+					<p>
+						<span class="title">Created: </span>{{repo.created | date:'shortDate'}}
+						<span class="title">Updated: </span>{{repo.updated | date:'shortDate'}}
+					</p>
+				</div>
+			</li>
+		</ul>
+		<span ng-show="vm.errors.repos">Error fetching repos for: {{vm.user}}</span>
+	</div>
+</div>

@@ -21,13 +21,12 @@
 
     function link(scope, element, attrs) {
       var statePositions= {
-        main: '50px 100px, 0px 50px',
+        hello: '50px 100px, 0px 50px',
         experiments: '100px 150px, 100px 70px',
         connect: '120px 200px, 120px 140px'
       };
 
       $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) { 
-        console.log('from ', fromState.name, ' to', toState.name);
         var animator = $animateCss(element, {
           event: 'moveBGs',
           easing: 'ease-out',

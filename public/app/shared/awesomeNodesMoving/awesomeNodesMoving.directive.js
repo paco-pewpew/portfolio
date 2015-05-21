@@ -64,7 +64,6 @@
           moveNodesToPosition.start();
 
 	    		$node.bind('mouseenter', function(event) {
-            console.log('entered a node',event);
             enterLocation = {
               x: $node.prop('offsetLeft') + (event.offsetX === undefined ? event.layerX - NODE.r : event.offsetX) - NODE.r,
               y: $node.prop('offsetTop') + (event.offsetY === undefined ? event.layerY - NODE.r : event.offsetY) - NODE.r

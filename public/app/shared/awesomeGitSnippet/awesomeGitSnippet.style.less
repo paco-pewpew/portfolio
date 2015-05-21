@@ -1,0 +1,128 @@
+.aws-git-snippet {
+	display: inline-block;
+	position: relative;
+	text-align: center;
+	perspective: 600px;
+	.git-user-info {
+		display: block;
+		transform: rotateY(-20deg);
+		border: 1px solid blue;
+		box-shadow: 0 0 10px black;
+		transform-style: preserve-3d;
+		transition: transform 0.5s ease;
+		img.git-avatar {
+			float:left;
+			height: 50px;
+			width: 50px;
+		}
+		a.git-name {
+			display: inline-block;
+			line-height: 50px;
+			text-decoration: none;
+			color: black;
+			font-size: 18px;
+		}
+	}
+	.git-repos {
+		transform: rotateY(-20deg);
+		display: inline-block;
+		transform-style: preserve-3d;
+		transition: transform 0.5s ease;
+		ul {
+			display: inline-block;
+			list-style: none;
+			li {
+				background: rgba(221, 208, 206, 0.7);
+				border-bottom: 1px solid black;
+				border-top: 1px solid black;
+				transform-origin: 0% 0%;
+				padding: 1px 5px;
+				.git-repo-info {
+					a {
+						display: block;
+						text-decoration: none;
+						color: black;
+					}
+					p {
+						background-color: white;
+						.title {
+							background-color: rgb(237, 237, 237);
+							border: 1px solid white;
+						}
+					}
+				}
+			}
+			/*li:nth-of-type(odd).ng-enter {
+				animation: dropUpper 10s linear;
+			}
+			li:nth-of-type(even).ng-enter {
+				animation: dropLower 10s linear;
+			}*/
+			li.ng-enter {
+				animation: dropUpper 0.5s linear;		
+			}
+			li.ng-enter-stagger {
+				animation-delay: 0.5s;
+				transition-delay: 0.5s;
+			}
+		}
+	}
+}
+.aws-git-snippet:hover {
+	.git-user-info {
+		transform: rotateY(0deg);
+	}
+	.git-repos {
+		transform: rotateY(0deg);
+	}
+}
+
+@keyframes dropUpper {
+  0% {
+    opacity: 0;
+  }
+  1% {
+  	opacity: 1;
+    transform-origin: 0% 0%;
+    transform: rotateX(-180deg) translateZ(20px);
+  }
+  100% {
+    transform: rotateX(0deg);
+  }
+}
+
+/////animations
+/*@keyframes dropUpper {
+  0% {
+    opacity: 0;
+  }
+  1% {
+  	opacity: 1;
+    transform-origin: 0% 0%;
+    transform: rotateX(180deg);
+  }
+  50% {
+    transform: rotateX(90deg);
+  } 
+  100% {
+    transform: rotateX(0deg);
+  }
+}
+
+@keyframes dropLower {
+  0% {
+    opacity: 0;
+  }
+  1% {
+  	opacity: 1;
+    transform-origin: 0% 100%;
+    transform: rotateX(-90deg) translateY(-100%);
+  }
+  50% {
+  	transform: rotateX(0deg) translateY(0%);
+  }
+  100% {
+    transform: rotateX(0deg) translateY(0%);
+  }
+}*/
+

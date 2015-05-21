@@ -16,14 +16,16 @@
       width: @squareL;
       height: @squareL;
       border: 1px solid white;
-      background-color: #999;
-      opacity: .5;
+      background: url(/assets/images/PATTERN.png);
+      background-size: 50%;
+      opacity: .7;
       overflow: hidden;
       /*transition: transform 1s;*/
-      transition: transform 1s;
+      transition: transform 0.5s;
       transition-delay: 0s;
       &.front {
         transform: translateZ(@squareL/2);
+        cursor: pointer;
       }
       &.right {
         transform: rotateY(90deg) translateZ(@squareL/2);
@@ -54,53 +56,76 @@
         line-height: @squareL;
 
         font-size: 14px;
-        cursor: pointer;
       }
       img {
-        height: @squareL;
-        width: @squareL;
+        /*height: @squareL;
+        width: @squareL;*/
+        height: 100%;
+        width: 100%;
       }
     }
-
-    
   }
   
   &.cube-opened {
     .aws-cube-shape {
       .front, .right, .back, .left, .top, .bottom {
-        transition: transform 1s;
-        transition-delay: 1s;
+        transition: transform 0,5s linear;
+        transition-delay: 0.5s;
         &:hover {
           opacity: 1;
         }
       }
       .front {
         transform: translateZ(@squareL);
+        cursor: auto;
       }
       .right {
         transform: rotateY(0deg) translate3d(@squareL, 0, @squareL);
       }
+      .top {
+        transform: rotateX(0deg) translate3d(@squareL, @squareL, @squareL);
+        cursor: pointer;
+      }
+      .left {
+        transform: rotateY(0deg) translate3d(@squareL, 2*@squareL, @squareL);
+        cursor: pointer;
+      }
+      .bottom {
+        transform: rotateY(0deg) translate3d(@squareL, 3*@squareL, @squareL);
+        cursor: pointer;
+      }
       .back {
         transform: rotateY(0deg) translate3d(2*@squareL, 3*@squareL, @squareL);
+        cursor: pointer;
         &:hover {
           text-shadow: 0 0 5px rgb(255,0,0);
         }
       }
-      .left {
-        transform: rotateY(0deg) translate3d(@squareL, 2*@squareL, @squareL);
+      .expand {
+        transition: opacity 0.5s linear;
+        transition-delay: 0s;
+        transform: rotateX(0deg) translate3d(@squareL*3, 0, @squareL);
+        width: 666px;
+        height: 666px;
+        opacity: 1;
+        background: white;
+        box-shadow: rgb(124, 107, 107) 0 0 20px;
       }
-      .top {
-        transform: rotateX(0deg) translate3d(@squareL, @squareL, @squareL);
-      }
-      .bottom {
-        transform: rotateY(0deg) translate3d(@squareL, 3*@squareL, @squareL);
-      }
+    }
+  }
+
+  &:not(.cube-opened){
+    .aws-cube-shape {
+      animation: spinForEver 4s linear infinite;
+    }
+    .aws-cube-shape:hover {
+      cursor: pointer;
     }
   }
   
   &.spin {
     .aws-cube-shape {
-      animation: spin 1s linear;
+      animation: spin 0.5s linear;
     }
   }
 
@@ -126,6 +151,18 @@
   }
 }
 
+@keyframes spinForEver {
+  0% {
+    transform: rotateX(-10deg) rotateY(0deg) rotateZ(0deg);
+  }
+  50% {
+    transform: rotateX(-10deg) rotateY(180deg) rotateZ(180deg);
+  }
+  100% {
+    transform: rotateX(-10deg) rotateY(360deg) rotateZ(360deg);
+  }
+}
+
 @keyframes rollLeft {
   from {
     transform: rotateZ(-180deg);
@@ -143,59 +180,3 @@
     transform: rotateZ(360deg);
   }
 }
-
-@keyframes movebg {
-   from {
-     background-position: 0%;
-   }
-   to { 
-     background-position: 187%;
-   }
-}
-
-@keyframes grow {
-   from {
-     height: 0px;
-   }
-   to { 
-     height: 300px;
-   }
-}
-
-/*aws-cube-shape.cube-opened {
-  .front {
-    transform: translateZ(@squareL);
-  }
-  .right {
-    transform: rotateY(90deg) translateZ(@squareL);
-  }
-  .back {
-    transform: rotateY(180deg) translateZ(@squareL);
-  }
-  .left {
-    transform: rotateY(270deg) translateZ(@squareL);
-  }
-  .top {
-    transform: rotateX(90deg) translateZ(@squareL);
-  }
-  .bottom {
-    transform: rotateX(270deg) rotateY(0deg) translateZ(@squareL);
-    span:before {
-      content: '';
-      position: absolute;
-      bottom: @squareL;
-      display: flex;
-      width: @squareL;
-      height: 300px;
-      background-color: rgba(20,20,20,0.5);
-      background-color: #026873;
-      background-image: linear-gradient(90deg, rgba(255,255,255,.07) 50%, transparent 50%),
-                        linear-gradient(90deg, rgba(255,255,255,.13) 50%, transparent 50%),
-                        linear-gradient(90deg, transparent 50%, rgba(255,255,255,.17) 50%),
-                        linear-gradient(90deg, transparent 50%, rgba(255,255,255,.19) 50%);
-      background-size: 13px, 29px, 37px, 53px;
-      opacity: 0.8;
-      animation: movebg linear 3s infinite, grow linear 1s;
-    }
-  }
-}*/

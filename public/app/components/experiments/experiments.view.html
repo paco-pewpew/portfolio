@@ -4,27 +4,41 @@
 		<div ng-repeat="cubeData in ::vm.gitExperiments" class="aws-cube-container">
 			<aws-cube 
 				content="cubeData"
-				enter-function="vm.activateCube($index)"
-				exit-function="vm.deactivateCube($index)">
+				enter-fn="vm.activateCube($index)"
+				exit-fn="vm.deactivateCube($index)"
+				active-shot="vm.activeShot">
 			</aws-cube>
 		</div>
 	</div>
 
+	<div id="experiments-caption" ng-show="vm.activatedCube === -1">
+		<p>These are few of my experiments each different from one another by goal and techniques.</p>
+	</div>
 
-	<div id="activated-contents" ng-if="vm.activatedCube!==-1">
+	<div id="recent-git"  ng-show="vm.activatedCube === -1">
+		<p>You can also check out this snippet fetching data for my recent public repos: </p>
+		<aws-git-snippet user="'paco-pewpew'" ng-animate-children></aws-git-snippet>
+	</div>
+
+	<div id="activated-contents" ng-if="vm.activatedCube !== -1">
 		<div id="images-row-container">
-			<aws-image-fx ng-repeat="shot in vm.gitExperiments[vm.activatedCube].shots" shot="shot">
+			<aws-image-fx
+				ng-repeat="shot in vm.gitExperiments[vm.activatedCube].shots"
+				shot="shot"
+				ng-click="vm.activeShot=$index">
 			</aws-image-fx>
 			
 			<div id="experiment-description">
 				<h2>{{vm.gitExperiments[vm.activatedCube].title}}</h2>
+				<a ng-href="{{vm.gitExperiments[vm.activatedCube].link}}">repository</a>
 				<p>{{vm.gitExperiments[vm.activatedCube].description}}</p>
 				<ul>
+					<strong>Keypoints:</strong>
 					<li ng-repeat="keypoint in vm.gitExperiments[vm.activatedCube].keypoints">{{keypoint}}</li>
 				</ul>
+				<p><i>{{vm.gitExperiments[vm.activatedCube].developing}}</i></p>
 			</div>
 		</div>
-
 	</div>
 
 </section>

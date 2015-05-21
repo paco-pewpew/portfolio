@@ -12,6 +12,7 @@
     vm.activateCube = activateCube;
     vm.deactivateCube = deactivateCube;
     vm.gitExperiments = gitExperiments;
+    vm.activeShot = -1;
     
     activate();
 
@@ -23,8 +24,7 @@
         element.count = vm.gitExperiments.length;
         element.place = index;
         element.rotation = { x: 0, y: 0, z: 0 };
-        /*element.translation = { x: (- 180 - (280*index)), y: 150, z: 0 };*/
-        element.translation = { x: (- 372 - (88 * index)), y: 150, z: 0 };
+        element.translation = { x: (- 450 - (88 * index)), y: 150, z: 0 };
         element.activated = false;
       });
     }
@@ -39,12 +39,14 @@
           el.activated = false;
         }
       });
+      vm.activeShot = -1;
     }
 
     function deactivateCube(index) {
       console.log('Deactivated');
       vm.gitExperiments[index].activated = false;
       vm.activatedCube = -1;
+      vm.activeShot = -1;
     }
 
   }

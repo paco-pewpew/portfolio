@@ -45,6 +45,7 @@
   			if (_current.length === 1) $interval.cancel(chageCurrent);
   			vm.current = vm.current.concat(_current.shift());
         $scope.$digest();
+        console.log(vm.current);
   		}, 60, 0, false);
 
   		var changePrevious = $interval(function() {
@@ -58,6 +59,7 @@
 
     $scope.$on('$destroy', function() {
       if (angular.isDefined(changeText)) {
+        console.log('canceling Outer interval');
         $interval.cancel(changeText);
         changeText = undefined;
       }
