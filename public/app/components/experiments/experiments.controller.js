@@ -31,7 +31,6 @@
     
     function activateCube(index) {
       vm.activatedCube = index;
-      console.log('Activated Cube');
       vm.gitExperiments.forEach(function(el, id) {
         if (id === index) {
           el.activated = true;
@@ -43,7 +42,6 @@
     }
 
     function deactivateCube(index) {
-      console.log('Deactivated');
       vm.gitExperiments[index].activated = false;
       vm.activatedCube = -1;
       vm.activeShot = -1;

@@ -27,31 +27,33 @@
   /* @ngInject */
   function Controller ($interval, $scope) {
   	var vm = this;
-  	vm.current = vm.content[0];
-  	vm.previous = '';
-
-  	var changeText = $interval(function() {
-      var _current;
-      
+    var _current = vm.content[0];
+    vm.current = _current;
+    vm.previous = '';
+    
+    var changeText = $interval(function() {
+      vm.previous = _current;
       do {
-        _current = vm.content[Math.floor(vm.content.length*Math.random())] || '';  
-      } while (vm.current === _current);
-  		
-      _current = _current.split('');
-  		vm.previous = vm.current;
-  		vm.current = '';
+        _current = vm.content[Math.floor(vm.content.length * Math.random())];  
+      } while (_current === vm.previous);
+      vm.current = '';
 
   		var chageCurrent = $interval(function() {
-  			if (_current.length === 1) $interval.cancel(chageCurrent);
-  			vm.current = vm.current.concat(_current.shift());
-        $scope.$digest();
-        console.log(vm.current);
+  			if (vm.current.length === _current.length) {
+          $interval.cancel(chageCurrent);
+        } else {
+    			vm.current = _current.slice(0,vm.current.length + 1);
+          $scope.$digest();
+        }
   		}, 60, 0, false);
 
   		var changePrevious = $interval(function() {
-  			if (vm.previous.length === 1) $interval.cancel(changePrevious);
-  			vm.previous = vm.previous.slice(1, vm.previous.length);
-        $scope.$digest();
+  			if (vm.previous.length === 0) {
+          $interval.cancel(changePrevious);
+        } else {
+    			vm.previous = vm.previous.slice(1, vm.previous.length);
+          $scope.$digest();
+        }
   		}, 60, 0, false);
 
       $scope.$digest();
@@ -59,7 +61,6 @@
 
     $scope.$on('$destroy', function() {
       if (angular.isDefined(changeText)) {
-        console.log('canceling Outer interval');
         $interval.cancel(changeText);
         changeText = undefined;
       }

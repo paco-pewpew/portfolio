@@ -47,7 +47,7 @@
           'transform': normalPosition
         }
       });
-      moveCubesToPosition.start().done(function(shit1,shit2){
+      moveCubesToPosition.start().done(function(){
         $cube.removeClass('roll-left');
         $cube.removeClass('roll-right');
       });
@@ -83,12 +83,6 @@
         }
       });
 
-      scope.$watch('vm.activeShot', function(newVal, oldVal) {
-        if (scope.vm.content.activated) {
-          console.log('shot on ',scope.vm.content.title,' from ',oldVal,' to ',newVal);
-        }
-      });
-      
     }
   }
 

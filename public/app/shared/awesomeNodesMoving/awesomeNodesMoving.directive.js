@@ -9,17 +9,13 @@
   function awsNodesMoving ($timeout, $animate, $animateCss) {
     // Usage: Creates nice thing with movable objects interacting with eachother
     //
-    // Creates: Element that takes array Objects with 2 keys: TITLE and CONTENT (url)
+    // Creates: Element that takes array Objects with 2 keys: caption and link(url)
     //
     var directive = {
-      bindToController: true,
-      controller: Controller,
-      controllerAs: 'vm',
       link: link,
       restrict: 'E',
       scope: {
       	content: '=',
-        title: '='
       },
       templateUrl: 'app/shared/awesomeNodesMoving/awesomeNodesMoving.view.html'
     };
@@ -45,10 +41,6 @@
             y: (CENTER.y + Math.cos(2 * Math.PI / nodes.length * id) * (CENTER.y + DISTANCE) - NODE.r)
           };
 
-	    		/*$node.css({
-	    			left: nodeLocations[id].x + 'px', 
-	    			top: nodeLocations[id].y + 'px'
-	    		});*/
           var moveNodesToPosition = $animateCss($node, {
             event: 'move-node-to-position',
             duration: 1,
@@ -136,10 +128,5 @@
 
     	});
     }
-  }
-
-  /* @ngInject */
-  function Controller ($interval) {
-  	var vm = this;
   }
 })();
